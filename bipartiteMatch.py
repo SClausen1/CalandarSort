@@ -7,6 +7,11 @@ def bipartiteMatch(graph):
 	of the maximum independent set in U, and B is the part of the MIS in V.
 	The same object may occur in both U and V, and is treated as two
 	distinct vertices if this happens.'''
+	
+	#Copyright 2002 David Eppstein
+	#The software is licensed according to the terms of the
+	#PSF (Python Software Foundation) license found here: http://www.python.org/psf/license/
+
 
 	# initialize greedy matching (redundant, but faster than full search)
 	matching = {}

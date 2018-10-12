@@ -1,9 +1,12 @@
 from bipartiteMatch import bipartiteMatch
-import csv
+
 import pandas as pd
 
-reader = csv.DictReader(open('myfile.csv'))
 
-bipartiteMatch(reader)
+df= pd.read_csv('SampleData.csv', index_col=0, squeeze=True).to_dict()
 
-    
+
+
+df = bipartiteMatch(df)
+
+print(df)
