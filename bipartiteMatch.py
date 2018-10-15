@@ -12,14 +12,15 @@ def bipartiteMatch(graph):
 	#The software is licensed according to the terms of the
 	#PSF (Python Software Foundation) license found here: http://www.python.org/psf/license/
 
-
 	# initialize greedy matching (redundant, but faster than full search)
+
 	matching = {}
 	for u in graph:
-		for v in graph[u]:
-			if v not in matching:
-				matching[v] = u
-				break
+		for u2 in graph:
+			for v in graph[u]:
+				if v not in matching and u != u2:
+					matching[v] = u, u2
+					break
 
 	while 1:
 		# structure residual graph into layers
