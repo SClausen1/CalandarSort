@@ -10,25 +10,27 @@ with open('SampleData.csv') as csv_file:
     for row in csv_reader:
         data[row[0]] = row[1:]
 
-        matching = {'time':'name1' 'name2'}
-        for u in data:
-            for u2 in data:
-                for v in data[u]:
-                    for v2 in data[u2]:
-                        if v not in matching and u != u2 and v == v2:
-                            matching[v] = u, u2
+        matching = {}
+        for name1 in data:
+            for name2 in data:
+                for v in data[name1]:
+                    for v2 in data[name2]:
+                        if v not in matching and name1 != name2 and v == v2:
+                            matching[v] = name1,name2
+                            break
+                        else:
                             break
 
-        unique = {}
-        for u in matching:
-            if matching['tim' , 'name1' , 'name2'] in unique:
-                break
-            else:
-                unique[u] = matching[u]
+    #    unique = {}
+    #    for u in matching:
+    #        if matching[u] in unique:
+    #            break
+    #        else:
+    #            unique[u] = matching[u]
 
 
 
 #print(bipartiteMatch(matching))
 print(matching)
 
-print(unique)
+#print(unique)
