@@ -15,11 +15,10 @@ with open('SampleData.csv') as csv_file:
             for name2 in data:
                 for v in data[name1]:
                     for v2 in data[name2]:
-                        if v not in matching and name1 != name2 and v == v2:
-                            matching[v] = name1,name2
+                        if name1 != name2 and v == v2:
+                            matching[v] = name1, name2
                             break
-                        else:
-                            break
+
 
     #    unique = {}
     #    for u in matching:
