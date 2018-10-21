@@ -26,10 +26,10 @@ with open('SampleData4.csv') as csv_file:
                         dataSort[name2] = ""
                         break
     # adds unmatched persons and all of their time slots to dict
+
     for name in dataSort:
         if dataSort[name] != "":
-            for v in dataSort[name]:
-                matching[v] = name
+            matching[name] = dataSort[name]
 
 
 print(matching)
