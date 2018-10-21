@@ -1,35 +1,37 @@
-from bipartiteMatch import bipartiteMatch
-#import numpy as np
 import csv
 
 data = {}
 
-with open('SampleData.csv') as csv_file:
+with open('SampleData4.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
 
     for row in csv_reader:
         data[row[0]] = row[1:]
 
-        matching = {}
-        for name1 in data:
-            for name2 in data:
-                for v in data[name1]:
-                    for v2 in data[name2]:
-                        if name1 != name2 and v == v2:
-                            matching[v] = name1, name2
-                            break
+    # sort data by number of elements
+    dataSort = {}
+    for k in sorted(data, key=lambda k: len(data[k])):
+        dataSort[k] = data[k]
+
+    # iterate through the sorted data two names and two values at a time
+    # once a match is found empty the values of that name
+    matching = {}
+    for name1 in dataSort:
+        for name2 in dataSort:
+            for v in dataSort[name1]:
+                for v2 in dataSort[name2]:
+                    if name1 != name2 and v == v2:
+                        matching[v] = name1, name2
+                        dataSort[name1] = ""
+                        dataSort[name2] = ""
+                        break
+    # adds unmatched persons and all of their time slots to dict
+    for name in dataSort:
+        if dataSort[name] != "":
+            for v in dataSort[name]:
+                matching[v] = name
 
 
-    #    unique = {}
-    #    for u in matching:
-    #        if matching[u] in unique:
-    #            break
-    #        else:
-    #            unique[u] = matching[u]
-
-
-
-#print(bipartiteMatch(matching))
 print(matching)
 
-#print(unique)
+
