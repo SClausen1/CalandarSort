@@ -1,9 +1,30 @@
 import csv
+import pandas as pd
 
 data = {}
 
-with open('SampleData4.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
+df = pd.read_csv('SchedulingSpreadsheet.csv', usecols=lambda x: x in ['Please type your name.', 'Monday', 'Tuesday',
+                                                                     'Wednesday', 'Thursday', 'Friday'])
+df['Monday'] = df['Monday'].str.replace(' PM', 'M')
+df['Monday'] = df['Monday'].str.replace(' AM', 'M')
+
+df['Tuesday'] = df['Tuesday'].str.replace(' PM', 'T')
+df['Tuesday'] = df['Tuesday'].str.replace(' AM', 'T')
+
+df['Thursday'] = df['Thursday'].str.replace(' PM', 'Th')
+df['Thursday'] = df['Thursday'].str.replace(' AM', 'Th')
+
+df['Wednesday'] = df['Wednesday'].str.replace(' PM', 'W')
+df['Wednesday'] = df['Wednesday'].str.replace(' AM', 'W')
+
+df['Friday'] = df['Friday'].str.replace(' PM', 'F')
+df['Friday'] = df['Friday'].str.replace(' AM', 'F')
+
+
+csv_reader = df.to_csv()
+print(csv_reader)
+with open('SchedulingSpreadsheet.csv') as csv_file:
+    csv_reader2 = csv.reader(csv_file, delimiter=',')
 
     for row in csv_reader:
         data[row[0]] = row[1:]
